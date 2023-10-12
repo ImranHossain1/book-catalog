@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { prisma } from '../../shared/prisma';
+import { prisma } from '../../../shared/prisma';
 
 const getUsers = async (): Promise<User[] | null> => {
   const result = await prisma.user.findMany();

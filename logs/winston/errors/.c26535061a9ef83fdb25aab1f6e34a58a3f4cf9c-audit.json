@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "J:\\2ndLevel\\assignement8\\book-catalloge-backend-final\\logs\\winston\\errors\\.c26535061a9ef83fdb25aab1f6e34a58a3f4cf9c-audit.json",
+    "files": [
+        {
+            "date": 1697144524277,
+            "name": "J:\\2ndLevel\\assignement8\\book-catalloge-backend-final\\logs\\winston\\errors\\phu-2023-12-10-23-error.log",
+            "hash": "983f930bd77596ec0a155f9ce53b2b3f09642b94930c56c9a2f9d55ec7be65fa"
+        }
+    ],
+    "hashType": "sha256"
+}
