@@ -16,16 +16,17 @@ enum Role {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  name       String
-  email      String   @unique
-  password   String
-  role       Role
-  contactNo  String   @map("contact_no")
-  address    String
-  profileImg String   @map("profile_img")
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
+  id              String            @id @default(uuid())
+  name            String
+  email           String            @unique
+  password        String
+  role            Role
+  contactNo       String            @map("contact_no")
+  address         String
+  profileImg      String            @map("profile_img")
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+  ReviewAndRating ReviewAndRating[]
 
   @@map("users")
 }
@@ -50,8 +51,24 @@ model Book {
   categoryId      String   @map("category_id")
   category        Category @relation(fields: [categoryId], references: [id])
 
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+  ReviewAndRating ReviewAndRating[]
+
+  @@map("books")
+}
+
+model ReviewAndRating {
+  id        String   @id @default(uuid())
+  review    String
+  rating    Int
+  userId    String   @map("user_id")
+  bookId    String   @map("book_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("books")
+  user User @relation(fields: [userId], references: [id])
+  book Book @relation(fields: [bookId], references: [id])
+
+  @@map("reviews_and_ratings")
 }
