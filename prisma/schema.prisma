@@ -27,6 +27,7 @@ model User {
   createdAt       DateTime          @default(now()) @map("created_at")
   updatedAt       DateTime          @updatedAt @map("updated_at")
   ReviewAndRating ReviewAndRating[]
+  Order           Order[]
 
   @@map("users")
 }
@@ -71,4 +72,22 @@ model ReviewAndRating {
   book Book @relation(fields: [bookId], references: [id])
 
   @@map("reviews_and_ratings")
+}
+
+model Order {
+  id           String      @id @default(uuid())
+  userId       String      @map("user_id")
+  orderedBooks Json        @map("ordered_books")
+  status       orderStatus @default(pending)
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
+  user         User        @relation(fields: [userId], references: [id])
+
+  @@map("orders")
+}
+
+enum orderStatus {
+  pending
+  shipped
+  delivered
 }

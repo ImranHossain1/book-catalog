@@ -1,69 +1,77 @@
-# University Management Core Service
-This guide will walk you through the process of setting up the University Management Core Service Starter project. By following these steps, you will clone the project, install dependencies, and configure Prisma for database management. Let's get started!
+# A Book Catalog Backend Server
 
+### Live Link : https://book-catalloge-backend-final.vercel.app/
 
-## Installation Steps
-### Follow these steps to clone and set up starter project:
+<hr>
 
-1. `Clone the project:` Open your terminal or command prompt and run the following command to clone the project repository:
+### Server Description:
 
-```bash
-git clone https://github.com/Programming-Hero-Next-Level-Development/university-management-core-service-starter.git university-management-core-service
-```
+This backend server, built using Express.js, Prisma, and PostgreSQL as its database, serves as the core infrastructure for a digital library or bookstore. It enables efficient management of an extensive collection of books, providing a wide range of API endpoints for users to interact with the system. These functionalities include browsing and searching for books, managing user orders, and giving administrators the tools to oversee user accounts and book inventory.
 
-2. `Navigate into the project directory:` Use the cd command to navigate into the project directory:
+The server seamlessly integrates with a relational database to store book-related information, and it leverages Prisma as an Object-Relational Mapping (ORM) tool to simplify interactions with the database. To ensure the security of sensitive data and restrict access to authorized users, the server implements robust security measures, including authentication, authorization, and data validation.
 
-```bash
-cd university-management-core-service
-```
+In addition to security, the server incorporates error handling, comprehensive logging, and detailed documentation to enhance its reliability and ease of maintenance. With these features, the server plays a pivotal role in the growth and scalability of the book catalog, making it an indispensable component for online book-related services.
 
-3. `Install project dependencies:` Next, install the project dependencies by running the following command:
+### Technology Stack:
 
-```bash
-yarn install
-```
+- TypeScript as the Programming Language.
+- Express.js as the web framework.
+- Prisma as the Object Relational Mapping (ORM)
+- postgreSQL as the database
 
-4. Configure Prisma and the database connection:
+### Live Link: https://book-catalloge-backend-final.vercel.app/api/v1
 
-- Add Prisma as a development dependency by running the following command:
-```bash
-yarn add prisma --save-dev
-```
+## Login
 
-- Set up your Prisma project by creating the Prisma schema file using the following command:
-```bash
-npx prisma init
-```
+- login for Admin:
 
-- Open the prisma/schema.prisma file and configure your database connection details.
+  ```json
+  {
+    "email": "imran@gmail.com",
+    "password": "admin123"
+  }
+  ```
 
-```bash
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-```
+- login for Customer:
 
-- Create a .env file in the project root directory and set the DATABASE_URL environment variable. Replace the placeholders with your database connection details:
-```bash
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
-```
+  ```json
+  {
+    "email": "helal@gmail.com",
+    "password": "user123"
+  }
+  ```
 
-5. Creating the database schema
-6. Migrate the database schema: Use the following command to create and apply the initial database schema:
+### Application Routes:
 
-```bash
-npx prisma migrate dev --name init
-```
-This command creates a new migration file based on your schema changes and applies it to your database.
+#### User
 
-6. `Install Prisma Client:` Install the Prisma Client library by running the following command:
-```bash
-yarn add @prisma/client
-```
+- api/v1/auth/signup (POST)
+- api/v1/auth/signin (POST)
+- api/v1/users (GET)
+- api/v1/users/:id (Single GET) Include an id that is saved in your database
+- api/v1/users/:id (PATCH)
+- api/v1/users/:id (DELETE) Include an id that is saved in your database
+- api/v1/profile (GET)
 
-This command installs the Prisma Client, which provides an interface to interact with your database.
+### Category
 
-That's it! You have successfully set up the University Management Core Service Starter project. You can now start exploring and working with the codebase. Refer to the project documentation or README for further instructions on how to run and use the core service.
+- api/v1/categories/create-category (POST)
+- api/v1/categories (GET)
+- api/v1/categories/:id (Single GET) Include an id that is saved in your database
+- api/v1/categories/:id (PATCH)
+- api/v1/categories/:id (DELETE) Include an id that is saved in your database
 
-Happy coding!
+### Books
+
+- api/v1/books/create-book (POST)
+- api/v1/books (GET)
+- api/v1/books/:categoryId/category (GET)
+- api/v1/books/:id (GET)
+- api/v1/books/:id (PATCH)
+- api/v1/books/:id (DELETE)
+
+### Orders
+
+- api/v1/orders/create-order (POST)
+- api/v1/orders (GET)
+- api/v1/orders/:orderId (GET)
